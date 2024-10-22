@@ -1,0 +1,38 @@
+services:
+  nameserver:
+    image: apache/rocketmq:4.9.5
+    container_name: nameserver
+    hostname: nameserver
+    ports:
+      - "9876:9876"
+    volumes:
+      - /data/rocketmq/nameserver/logs:/home/rocketmq/logs
+    command: sh mqnamesrv
+    restart: on-failure
+
+  broker:
+    image: apache/rocketmq:4.9.5
+    container_name: broker
+    hostname: broker
+    ports:
+      - "10909:10909"
+      - "10911:10911"
+      - "10912:10912"
+    volumes:
+      - /data/rocketmq/broker/logs:/home/rocketmq/logs
+      - /data/rocketmq/broker/store:/home/rocketmq/store
+      - /data/rocketmq/broker/config/broker.conf:/etc/rocketmq/broker.conf
+    environment:
+      JAVA_OPTS_EXT: "-server -Xms2g -Xmx2g -Xmn1g"
+    command: sh mqbroker -n 10.71.11.45:9876 -c /etc/rocketmq/broker.conf
+    restart: on-failure
+
+  dashboard:
+    image: apacherocketmq/rocketmq-dashboard:1.0.0
+    container_name: rocketmq-dashboard
+    hostname: rocketmq-dashboard
+    ports:
+      - "8080:8080"
+    environment:
+      JAVA_OPTS: "-Drocketmq.namesrv.addr=10.200.10.10:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false"
+    restart: on-failure

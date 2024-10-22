@@ -1,0 +1,15 @@
+services:
+  nacos:
+    image: nacos/nacos-server:v2.2.0
+    container_name: nacos
+    platform: linux/x86_64
+    restart: always
+    ports:
+      - "8848:8848"
+    volumes:
+      - /data/nacos/logs:/home/nacos/logs
+      - /data/nacos/data:/home/nacos/data
+    env_file:
+      - /data/nacos/config/nacos-standlone-mysql.env
+    environment:
+      TZ: UTC

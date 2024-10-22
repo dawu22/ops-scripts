@@ -1,0 +1,13 @@
+services:
+  redis:
+    image: redis:7.0.11
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - /data/redis/data:/data
+      - /data/redis/config/redis.conf:/etc/redis/redis.conf
+    environment:
+      TZ: UTC
+    command: [ "redis-server", "/etc/redis/redis.conf" ]

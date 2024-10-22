@@ -1,0 +1,13 @@
+services:
+  emqx:
+    image: emqx/emqx:5.0.26
+    container_name: emqx
+    ports:
+      - "1883:1883"
+      - "8083:8083"
+      - "8084:8084"
+      - "18083:18083"
+    volumes:
+      - /data/emqx/data:/opt/emqx/data
+      - /data/emqx/log:/opt/emqx/log
+    restart: always

@@ -1,0 +1,11 @@
+[
+              {
+                  "Metric": "db.SQL.Queries.avg"
+              },
+              {
+                  "Metric": "db.Transactions.active_transactions.avg"
+              },
+              {
+                  "Metric": "db.Locks.innodb_row_lock_waits.avg"
+              }
+]

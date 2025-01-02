@@ -24,7 +24,7 @@ services:
       - /data/rocketmq/broker/config/broker.conf:/etc/rocketmq/broker.conf
     environment:
       JAVA_OPTS_EXT: "-server -Xms2g -Xmx2g -Xmn1g"
-    command: sh mqbroker -n 10.71.11.45:9876 -c /etc/rocketmq/broker.conf
+    command: sh mqbroker -n 10.200.10.10:9876 -c /etc/rocketmq/broker.conf
     restart: on-failure
 
   dashboard:

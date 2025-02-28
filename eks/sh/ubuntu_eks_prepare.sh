@@ -58,4 +58,4 @@ aws_cli
 kubectl
 eksctl
 helm3
-terraform
+#terraform

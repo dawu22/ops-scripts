@@ -4,12 +4,11 @@ services:
     container_name: mysql80
     restart: always
     ports:
-      - 3307:3306
+      - 3306:3306
     volumes:
       - /data/mysql80/config:/etc/mysql/conf.d
       - /data/mysql80/data:/var/lib/mysql
     environment:
       TZ: "UTC"
       MYSQL_ROOT_PASSWORD: 123456
-      MYSQL_DATABASE: test
       MYSQL_ROOT_HOST: "%"

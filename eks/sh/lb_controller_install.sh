@@ -2,7 +2,7 @@
 
 cluster="prod-eks"
 
-#curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.11.0/docs/install/iam_policy.json
+#curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.13.2/docs/install/iam_policy.json
 
 ##role need iam:CreatePolicy
 content=$(aws iam create-policy \

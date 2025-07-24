@@ -44,6 +44,17 @@ helm3() {
   curl "https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3" | bash
 }
 
+##install cilium
+cilium_cli() {
+  CILIUM_CLI_VERSION=$(curl -s https://raw.githubusercontent.com/cilium/cilium-cli/main/stable.txt)
+  CLI_ARCH=amd64
+  if [ "$(uname -m)" = "aarch64" ]; then CLI_ARCH=arm64; fi
+  curl -L --fail --remote-name-all https://github.com/cilium/cilium-cli/releases/download/${CILIUM_CLI_VERSION}/cilium-linux-${CLI_ARCH}.tar.gz{,.sha256sum}
+  sha256sum --check cilium-linux-${CLI_ARCH}.tar.gz.sha256sum
+  sudo tar zxf cilium-linux-${CLI_ARCH}.tar.gz -C /usr/local/bin/
+  rm cilium-linux-${CLI_ARCH}.tar.gz{,.sha256sum}
+}
+
 ##install terraform
 terraform() {
   wget https://releases.hashicorp.com/terraform/1.10.5/terraform_1.10.5_linux_amd64.zip
@@ -58,4 +69,5 @@ aws_cli
 kubectl
 eksctl
 helm3
+cilium_cli
 #terraform
